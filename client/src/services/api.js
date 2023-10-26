@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://easyshare-2-0.onrender.com/'; // process.env.API_URL || 'http://localhost:8000';
+const API_URL = 'https://easyshare-2-0.onrender.com'; // process.env.API_URL || 'http://localhost:8000';
 
 export const uploadFile = async (data) => {
     try {
