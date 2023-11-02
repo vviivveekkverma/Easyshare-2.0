@@ -25,9 +25,9 @@ export const downloadImage = async (request, response) => {
 
         await file.save();
 
-        // Set Content-Disposition header to force download
+        // Set Content-Disposition header to force download with the file name
         response.setHeader('Content-Disposition', `attachment; filename="${file.name}"`);
-        response.download(file.path, file.name);
+        response.sendFile(file.path);
     } catch (error) {
         console.error(error.message);
         return response.status(500).json({ error: error.message });  

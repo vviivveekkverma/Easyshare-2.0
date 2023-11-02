@@ -4,15 +4,14 @@ import './App.css';
 import { uploadFile } from './services/api';
 
 function App() {
-
   const [file, setFile] = useState('');
   const [result, setResult] = useState('');
 
   const fileInputRef = useRef();
 
-  const logo = 'https://www.techrepublic.com/wp-content/uploads/2022/08/file-sharing-overload.jpeg';
+  const logoSrc = 'https://www.techrepublic.com/wp-content/uploads/2022/08/file-sharing-overload.jpeg';
 
-  useEffect( () => {
+  useEffect(() => {
     const getImage = async () => {
       if (file) {
         const data = new FormData();
@@ -31,23 +30,26 @@ function App() {
   }
 
   return (
-      <div className='container'>
-        <img src={logo} alt="banner" />
-        <div className='wrapper'>
-          <h1>Easy Share</h1>
-          <h3>Upload your file and share the downloadable link.</h3>
+    <div className='container'>
+      <img src={logoSrc} alt="banner" />
+      <div className='wrapper'>
+        <h1>Easy Share</h1>
+        <h3>Upload your file and share the downloadable link.</h3>
 
-          <button onClick={() => onUploadClick()}>Upload here</button>
-          <input type="file" 
-            ref={fileInputRef}
-            style={{ display: 'none' }}
-            onChange={ (e) => setFile(e.target.files[0])}
-          />
+        <button onClick={() => onUploadClick()}>Upload here</button>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={(e) => setFile(e.target.files[0])}
+        />
 
-          <a href={result} target="_blank">{result}</a>
-        </div>
-
+        {/* Adjusted the link to trigger download */}
+        {result && (
+          <a href={result} download>Download File</a>
+        )}
       </div>
+    </div>
   );
 }
 
